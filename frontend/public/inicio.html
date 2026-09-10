@@ -496,3 +496,101 @@ CEP: 01311-000</p></div>
 <script id="__inscreva_redirect">
 (function(){var b=document.getElementById('btn-inscreva');if(!b)return;b.addEventListener('click',function(e){e.preventDefault();var o=document.getElementById('insc-overlay');if(o)o.style.display='flex';setTimeout(function(){window.location.href='/plataforma.html';},1000);});})();
 </script>
+
+<style id="__mobile_home_fix">
+#m-burger,#m-menu{display:none}
+@media (max-width:979px){
+  /* 1. remove a faixa branca acima do cabeçalho */
+  header[role=banner].fixed-top{top:0 !important}
+  #barra-fgv{display:none !important}
+  body.barrafgv-processed{margin-top:0 !important}
+  /* esconde o toggler nativo quebrado do SingleFile */
+  header .navbar-toggler{display:none !important}
+
+  /* 2. hamburguer + menu lateral (igual ao original) */
+  #m-burger{
+    position:fixed;top:0;right:0;z-index:1045;width:62px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:transparent;border:0;cursor:pointer;
+  }
+  #m-burger span{display:block;width:26px;height:2px;background:#fff;margin:3px 0;border-radius:2px}
+  #m-menu{
+    position:fixed;inset:0;z-index:1050;background:#002D4D;color:#fff;
+    display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    transform:translateX(100%);transition:transform .28s ease;
+  }
+  #m-menu.open{transform:translateX(0)}
+  #m-menu .m-top{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 6px}
+  #m-menu .m-logo{display:inline-block;width:180px;height:22px;background:var(--sf-img-15) no-repeat left center;background-size:contain}
+  #m-menu .m-close{background:none;border:0;cursor:pointer;padding:6px;line-height:0}
+  #m-menu .m-search{padding:16px 22px 6px}
+  #m-menu .m-search svg{width:22px;height:22px}
+  #m-menu ul{list-style:none;margin:0;padding:6px 0 48px}
+  #m-menu li a{
+    display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;
+    text-transform:uppercase;font-weight:600;letter-spacing:.5px;font-size:15px;padding:16px 22px;
+  }
+  #m-menu li a:active{background:rgba(255,255,255,.06)}
+  body.m-menu-open{overflow:hidden}
+
+  /* 3. formatação do texto de informações do concurso */
+  article .field--name-body > .field__item p{
+    font-size:16px;line-height:1.72;color:#2f4155;margin:0 0 18px;text-align:left
+  }
+
+  /* 4. Arquivos do concurso — cor igual ao original */
+  .field--name-field-td-texto .ext,
+  .field--name-field-td-texto .ext strong{color:#00a9ac !important}
+  .field--name-field-td-data time{color:#0a1f33 !important;font-weight:700 !important}
+}
+</style>
+
+<button id="m-burger" aria-label="Abrir menu" data-testid="mobile-menu-burger"><span></span><span></span><span></span></button>
+<div id="m-menu" role="dialog" aria-modal="true" data-testid="mobile-menu-panel">
+  <div class="m-top">
+    <span class="m-logo"></span>
+    <button class="m-close" aria-label="Fechar menu" data-testid="mobile-menu-close">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#01BFBF" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="m-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+  </div>
+  <ul>
+    <li><a href="javascript:void(0)">Quem somos</a></li>
+    <li><a href="javascript:void(0)">Exames</a></li>
+    <li><a href="javascript:void(0)">Avaliações</a></li>
+    <li><a href="javascript:void(0)">Concursos</a></li>
+    <li><a href="javascript:void(0)">Certificações <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a></li>
+    <li><a href="javascript:void(0)">Centros de Pesquisa</a></li>
+    <li><a href="javascript:void(0)">Publicações</a></li>
+    <li><a href="javascript:void(0)">Eventos</a></li>
+    <li><a href="javascript:void(0)">Vídeos</a></li>
+    <li><a href="javascript:void(0)">Contatos</a></li>
+  </ul>
+</div>
+<script id="__mobile_home_js">
+(function(){
+  var burger=document.getElementById('m-burger');
+  var menu=document.getElementById('m-menu');
+  if(!burger||!menu) return;
+  var closeBtn=menu.querySelector('.m-close');
+  var header=document.querySelector('header[role=banner].fixed-top');
+  var layout=document.querySelector('.layout-container');
+  function isMobile(){return window.innerWidth<=979;}
+  function sync(){
+    if(isMobile()&&header){
+      header.style.top='0px';
+      var h=header.offsetHeight;
+      if(layout) layout.style.paddingTop=h+'px';
+      burger.style.height=h+'px';
+    }
+  }
+  function open(){menu.classList.add('open');document.body.classList.add('m-menu-open');}
+  function close(){menu.classList.remove('open');document.body.classList.remove('m-menu-open');}
+  burger.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  window.addEventListener('resize',sync);
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',sync);}else{sync();}
+})();
+</script>

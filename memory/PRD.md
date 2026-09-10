@@ -113,3 +113,12 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - Card "Origem por dispositivo" agora SÓ no Dashboard: ensureButton chama injectFunnelDevices sempre; quando não é dashboard, removeFunnelDevices() tira o card do DOM (antes ficava grudado ao trocar de rota). Cache bust index.html v=20260608d.
 - track_registration agora grava device + user_agent na inscrição no momento da criação (antes só via patch do Telegram).
 - Seed: /app/seed_inscricoes.py cria 300 inscrições realistas (nomes BR, CPF válido, cidades BA, IPs BR via X-Forwarded-For) espalhadas em ~10min, mix mobile/desktop, 3 cargos (Delegado 220 / Escrivão 190 / Investigador 190) e 4 comportamentos (gera / gera+copia / gera+baixa / gera+baixa+copia). Log em /app/seed.log. Roda contra localhost:8001.
+
+
+## Update 2026-06 (fork) — Ajustes mobile da página inicial (inicio.html)
+- Bloco mobile-only (@media max-width:979px) injetado no fim de /app/frontend/public/inicio.html (id __mobile_home_fix + __mobile_home_js). Desktop inalterado.
+- (1) Removida faixa branca acima do cabeçalho: header[role=banner].fixed-top top:0 !important (era top:20px); JS também sincroniza layout-container padding-top = header.offsetHeight.
+- (2) Cabeçalho igual ao original: navbar-toggler nativo (sf-hidden) escondido; adicionado hambúrguer #m-burger (3 barras brancas, fixed top-right) que abre menu lateral navy #m-menu (transform translateX) com logo (var(--sf-img-15)), X teal, ícone de busca e itens QUEM SOMOS/EXAMES/AVALIAÇÕES/CONCURSOS/CERTIFICAÇÕES▾/CENTROS DE PESQUISA/PUBLICAÇÕES/EVENTOS/VÍDEOS/CONTATOS.
+- (3) Texto "Informações sobre o concurso": font-size 16px, line-height 1.72, cor #2f4155, margens confortáveis.
+- (4) "Arquivos do concurso": .ext cor teal #00a9ac (igual ao print original); datas em negrito escuro #0a1f33.
+- data-testid: mobile-menu-burger, mobile-menu-panel, mobile-menu-close. Validado via Playwright em 390px: burger=flex, navbar_toggler=none, header_top=0px, ext_color=rgb(0,169,172).
