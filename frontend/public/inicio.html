@@ -594,3 +594,73 @@ CEP: 01311-000</p></div>
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',sync);}else{sync();}
 })();
 </script>
+<style id="__aviso_modal_css">
+#aviso-overlay{
+  position:fixed;inset:0;z-index:100000;display:none;
+  align-items:center;justify-content:center;padding:20px;
+  background:rgba(15,23,42,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+#aviso-overlay.open{display:flex}
+#aviso-modal{
+  width:100%;max-width:460px;background:#fff;border-radius:16px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+  animation:avisoIn .28s ease;
+}
+@keyframes avisoIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+#aviso-modal .aviso-logo{
+  display:flex;align-items:center;justify-content:center;
+  background:#002D4D;padding:22px 20px;
+}
+#aviso-modal .aviso-logo span{
+  display:inline-block;width:200px;height:24px;
+  background:var(--sf-img-15) no-repeat center;background-size:contain;
+}
+#aviso-modal .aviso-body{padding:26px 28px 30px;text-align:center}
+#aviso-modal h2{
+  color:#002D4D;font-weight:700;font-size:22px;margin:0 0 14px;line-height:1.2;
+}
+#aviso-modal p{
+  color:#3a4a5c;font-size:15px;line-height:1.6;margin:0 0 24px;
+}
+#aviso-modal p strong{color:#002D4D}
+#aviso-ok{
+  display:inline-block;border:0;cursor:pointer;
+  background:linear-gradient(135deg,#01BFBF,#008f9a);color:#fff;
+  font-weight:700;font-size:15px;letter-spacing:.3px;
+  padding:13px 40px;border-radius:999px;
+  box-shadow:0 8px 18px rgba(1,191,191,.35);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+#aviso-ok:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(1,191,191,.45)}
+#aviso-ok:active{transform:translateY(0)}
+@media (max-width:520px){
+  #aviso-modal .aviso-body{padding:22px 20px 26px}
+  #aviso-modal h2{font-size:19px}
+  #aviso-modal p{font-size:13.5px}
+  #aviso-modal .aviso-logo span{width:170px}
+}
+</style>
+<div id="aviso-overlay" role="dialog" aria-modal="true" aria-labelledby="aviso-title" data-testid="modal-aviso-overlay">
+  <div id="aviso-modal">
+    <div class="aviso-logo"><span></span></div>
+    <div class="aviso-body">
+      <h2 id="aviso-title">Aviso importante</h2>
+      <p>As inscrições para o Concurso Público da Secretaria de Saúde do Estado do Tocantins (SES/TO) encerram-se nesta quinta-feira, dia <strong>10/09/2026</strong>, às <strong>23h59min</strong> (horário de Brasília). Não perca o prazo!</p>
+      <button id="aviso-ok" data-testid="modal-aviso-ok-btn">OK, entendi</button>
+    </div>
+  </div>
+</div>
+<script id="__aviso_modal_js">
+(function(){
+  var KEY='fgv_aviso_sesto_v1';
+  var overlay=document.getElementById('aviso-overlay');
+  var ok=document.getElementById('aviso-ok');
+  if(!overlay||!ok) return;
+  function close(){overlay.classList.remove('open');document.body.style.overflow='';}
+  function open(){overlay.classList.add('open');document.body.style.overflow='hidden';}
+  try{ if(!sessionStorage.getItem(KEY)){ open(); sessionStorage.setItem(KEY,'1'); } }catch(e){ open(); }
+  ok.addEventListener('click',close);
+  overlay.addEventListener('click',function(e){ if(e.target===overlay) close(); });
+})();
+</script>
+

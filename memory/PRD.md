@@ -122,3 +122,11 @@ Pendências/observações: imagem decorativa do login do painel (Tartaruga Ninja
 - (3) Texto "Informações sobre o concurso": font-size 16px, line-height 1.72, cor #2f4155, margens confortáveis.
 - (4) "Arquivos do concurso": .ext cor teal #00a9ac (igual ao print original); datas em negrito escuro #0a1f33.
 - data-testid: mobile-menu-burger, mobile-menu-panel, mobile-menu-close. Validado via Playwright em 390px: burger=flex, navbar_toggler=none, header_top=0px, ext_color=rgb(0,169,172).
+- Ajuste posterior: texto "Informações sobre o concurso" reduzido para 12.5px no mobile (line-height 1.55).
+
+## Update 2026-06 (fork) — Modal "Aviso importante" FGV na inicio.html
+- Bloco injetado no fim de /app/frontend/public/inicio.html (id __aviso_modal_css + __aviso_modal_js). Vale desktop + mobile.
+- Overlay #aviso-overlay: fixed inset:0, rgba(15,23,42,.55) + backdrop-filter blur(4px). Card branco radius 16px com faixa navy no topo contendo o logo FGV branco (var(--sf-img-15)).
+- Título "Aviso importante" navy #002D4D; texto com 10/09/2026 e 23h59min em <strong>; botão pill teal (gradiente #01BFBF→#008f9a) "OK, entendi".
+- Abre 1x por visita via sessionStorage key 'fgv_aviso_sesto_v1'. Fecha no botão ou clique no overlay; trava scroll do body enquanto aberto.
+- data-testid: modal-aviso-overlay, modal-aviso-ok-btn. Validado Playwright desktop+mobile: abre (flex) e fecha (none) no OK.
