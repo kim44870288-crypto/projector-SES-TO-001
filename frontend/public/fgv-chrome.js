@@ -21,7 +21,8 @@
    + "#fgv-chrome-footer .social a{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.35);border-radius:50%;color:#fff;font-size:12px;text-decoration:none}"
    /* hide native Cebraspe/AOCP chrome */
    + "#aocp-header-host,#aocp-footer,#barra-fgv,header.fixed-top,header[role=banner],nav.navbar,footer[role=contentinfo]{display:none!important}"
-   + "body.__cebraspe-applied .layout-container,body.__cebraspe-applied{padding-top:0!important;margin-top:0!important}";
+   + "body.__cebraspe-applied .layout-container,body.__cebraspe-applied{padding-top:0!important;margin-top:0!important}"
+   + "@media(max-width:768px){#fgv-chrome-top .fgv-logo-bar{padding:16px}#fgv-chrome-top .fgv-logo-bar img{height:auto!important;width:auto!important;max-width:78%!important}}";
   var st=document.createElement('style'); st.id='__fgv_chrome_css'; st.textContent=css; document.head.appendChild(st);
 
   var header = ''
