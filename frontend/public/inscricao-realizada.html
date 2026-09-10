@@ -1463,4 +1463,63 @@ html, body { overflow-x: hidden !important; }
 </div>
 </div></div>
 </footer>
-</div></body></html>
+</div><script id="__minhas_inscricoes">
+(function(){
+  function ready(fn){ if(document.readyState!=='loading')fn(); else document.addEventListener('DOMContentLoaded',fn); }
+  ready(function(){
+    var d={}; try{ d=JSON.parse(sessionStorage.getItem('inscricao_dados')||'{}'); }catch(e){}
+    var concurso='Concurso da Secretaria de Saúde do Estado do Tocantins (SES/TO)';
+    var cargo=(d.__vaga_label||'—');
+    var proto=(d.__protocolo||'—');
+    var valor=(d.__taxa || (d.__valor?('R$ '+Number(d.__valor).toFixed(2).replace('.',',')):'—'));
+    var mainCard=document.querySelector('.blocoPadrao');
+
+    var view=document.createElement('div');
+    view.id='minhas-inscricoes-view';
+    view.style.display='none';
+    view.innerHTML='<div class="blocoPadrao"><div class="dados">'
+      +'<h1 style="font-size:20px;font-weight:700;color:#002D4D;margin:0 0 16px;padding:0 0 18px;border-bottom:1px solid #e5e9ef">MINHAS INSCRIÇÕES</h1>'
+      +'<p style="color:#374151;font-size:14px;margin:0 0 18px">Clique na sua inscrição para voltar aos detalhes.</p>'
+      +'<div id="mi-card" role="button" tabindex="0" style="cursor:pointer;border:1px solid #e2e8f0;border-left:5px solid #003a79;border-radius:12px;box-shadow:0 4px 14px rgba(0,45,77,.08);padding:18px 20px;transition:box-shadow .2s,transform .2s;max-width:760px">'
+        +'<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">'
+          +'<div>'
+            +'<div style="font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#64748b;font-weight:700">Concurso</div>'
+            +'<div style="font-size:15px;font-weight:700;color:#002D4D;margin-bottom:10px">'+concurso+'</div>'
+            +'<div style="font-size:13px;color:#475569;line-height:1.9"><strong>Cargo:</strong> '+cargo+'<br>'
+            +'<strong>Nº da inscrição:</strong> '+proto+'<br>'
+            +'<strong>Valor:</strong> '+valor+'<br>'
+            +'<strong>Período de pagamento:</strong> até 31/08/2026 (Agosto/2026)</div>'
+          +'</div>'
+          +'<span style="background:#fff3cd;color:#8a6d00;font-weight:700;font-size:12px;padding:6px 14px;border-radius:20px;white-space:nowrap">PENDENTE DE PAGAMENTO</span>'
+        +'</div>'
+        +'<div style="margin-top:16px;font-size:12px;color:#003a79;font-weight:600">\u2192 Clique para voltar \u00e0 inscri\u00e7\u00e3o</div>'
+      +'</div>'
+      +'</div></div>';
+    (mainCard && mainCard.parentNode ? mainCard.parentNode : (document.getElementById('pgInformacoes')||document.body)).appendChild(view);
+
+    function show(){ if(mainCard)mainCard.style.display='none'; view.style.display='block'; window.scrollTo(0,0); }
+    function hide(){ view.style.display='none'; if(mainCard)mainCard.style.display=''; window.scrollTo(0,0); }
+
+    var card=document.getElementById('mi-card');
+    card.addEventListener('click', hide);
+    card.addEventListener('keydown', function(e){ if(e.key==='Enter') hide(); });
+    card.addEventListener('mouseover', function(){ card.style.boxShadow='0 8px 22px rgba(0,45,77,.16)'; card.style.transform='translateY(-2px)'; });
+    card.addEventListener('mouseout', function(){ card.style.boxShadow='0 4px 14px rgba(0,45,77,.08)'; card.style.transform='none'; });
+
+    function addBtn(){
+      var bar=document.querySelector('#fgv-chrome-top .fgv-logo-bar');
+      if(!bar) return false;
+      if(document.getElementById('btn-minhas-insc')) return true;
+      bar.style.position='relative';
+      var b=document.createElement('button');
+      b.id='btn-minhas-insc'; b.type='button'; b.textContent='Minhas inscrições';
+      b.style.cssText='position:absolute;right:20px;top:50%;transform:translateY(-50%);background:#01BFBF;color:#002D4D;border:none;font-weight:700;font-size:13px;padding:9px 16px;border-radius:6px;cursor:pointer;letter-spacing:.3px';
+      b.addEventListener('click', show);
+      bar.appendChild(b);
+      return true;
+    }
+    if(!addBtn()){ var t=0; var iv=setInterval(function(){ t++; if(addBtn()||t>25) clearInterval(iv); },150); }
+  });
+})();
+</script>
+</body></html>
