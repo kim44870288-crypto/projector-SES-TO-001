@@ -797,7 +797,7 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <label class="description error"></label>
 <div id="edital-field" class="fgv-field" style="display:none !important"><label><span class="error">*</span> Selecione o Edital</label>
 <select class="select" data-testid="select-concurso" id="CONCURSO_TIPO">
-<option value="1" selected="">SAEB - Polícia Civil da Bahia</option>
+<option value="1" selected="">Concurso SES/TO</option>
 </select></div>
 <div class="fgv-field"><label><span class="error">*</span> Cargo / Especialidade</label>
 <select class="select" data-testid="select-vaga" id="VAGA" name="VAGA" required="" disabled="">
@@ -1290,7 +1290,7 @@ function __handleDocTipo(v){
           cpf: data.CPF || '',
           email: data.EMAIL || '',
           concurso: CONCURSO,
-          edital: '002/2026-SAEB-BA',
+          edital: '002/2026-SES-TO',
           stage: 'cadastro',
           visitor_id: window.__vid(),
           form_data: form_data
@@ -1324,7 +1324,7 @@ function __handleDocTipo(v){
       try{
         var ctx = Object.assign({}, data, {
           __concurso: CONCURSO,
-          __edital: '002/2026-SAEB-BA',
+          __edital: '002/2026-SES-TO',
           __cargo_codigo: vagaInfo.codigo,
           __cargo_titulo: vagaInfo.titulo,
           __taxa: vagaInfo.taxa,
