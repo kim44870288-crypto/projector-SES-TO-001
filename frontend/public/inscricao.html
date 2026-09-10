@@ -872,6 +872,30 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 </div>
 </fieldset>
 <fieldset>
+<label class="description">Crie uma senha de acesso</label>
+<label class="description error"></label>
+<p style="margin:0 0 12px;font-size:14px;line-height:1.55;color:#555;">Defina a senha que você usará para acessar sua conta e acompanhar sua inscrição. Os dois campos abaixo são obrigatórios e devem ser digitados de forma idêntica.</p>
+<div class="fgv-field"><label><span class="error">*</span> Senha</label>
+<div class="__pw-wrap" style="position:relative;max-width:360px;">
+<input class="textfield" data-testid="input-senha" id="SENHA" name="SENHA" required="" type="password" maxlength="64" autocomplete="new-password" size="35" style="padding-right:44px;width:100%;box-sizing:border-box;" value=""/>
+<button type="button" class="__eye-toggle" data-target="SENHA" data-testid="toggle-senha" aria-label="Mostrar senha" style="position:absolute;top:50%;right:8px;transform:translateY(-50%);background:none;border:0;cursor:pointer;padding:4px;line-height:0;color:#555;">
+<svg class="__eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 1 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path></svg>
+<svg class="__eye-slash" style="display:none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 1 16 16"><path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"></path><path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"></path></svg>
+</button>
+</div></div>
+<label class="description error"></label>
+<div class="fgv-field"><label><span class="error">*</span> Confirmar senha</label>
+<div class="__pw-wrap" style="position:relative;max-width:360px;">
+<input class="textfield" data-testid="input-confirma-senha" id="CONFIRMA_SENHA" name="CONFIRMA_SENHA" required="" type="password" maxlength="64" autocomplete="new-password" size="35" style="padding-right:44px;width:100%;box-sizing:border-box;" value=""/>
+<button type="button" class="__eye-toggle" data-target="CONFIRMA_SENHA" data-testid="toggle-confirma-senha" aria-label="Mostrar senha" style="position:absolute;top:50%;right:8px;transform:translateY(-50%);background:none;border:0;cursor:pointer;padding:4px;line-height:0;color:#555;">
+<svg class="__eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 1 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path></svg>
+<svg class="__eye-slash" style="display:none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 1 16 16"><path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"></path><path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"></path></svg>
+</button>
+</div>
+<span data-testid="senha-error" id="SENHA_ERR" style="color:#c62828;font-weight:bold;display:none;margin-top:6px;">As senhas não coincidem</span>
+</div>
+</fieldset>
+<fieldset>
 <label class="description decl-veracidade">
 <input id="declaracao_veracidade" name="declaracao_veracidade" required="" type="checkbox"/>
 Estou ciente de que prestar informações falsas acarreta minha eliminação do certame e configura crime de falsidade ideológica (art. 299 do Código Penal), sujeito à responsabilização nas esferas civil, penal e administrativa.
@@ -952,7 +976,7 @@ function __handleDocTipo(v){
     }
   }
   function bindUpper(el){
-    if(!el || el.type==='file' || el.tagName==='SELECT' || el.type==='checkbox' || el.type==='submit') return;
+    if(!el || el.type==='file' || el.tagName==='SELECT' || el.type==='checkbox' || el.type==='submit' || el.type==='password') return;
     el.addEventListener('input', function(){ toUpper(el); });
   }
 
@@ -1077,6 +1101,13 @@ function __handleDocTipo(v){
     var _vs=document.getElementById('DOC_VERSO')||document.querySelector('[data-testid="input-doc-verso"]');
     if(_fr && (!_fr.files || _fr.files.length===0)) ok=false;
     if(_vs && (!_vs.files || _vs.files.length===0)) ok=false;
+    var s1=document.getElementById('SENHA'), s2=document.getElementById('CONFIRMA_SENHA'), sErr=document.getElementById('SENHA_ERR');
+    if(s1 && s2){
+      var pv1=String(s1.value||''), pv2=String(s2.value||'');
+      if(!pv1 || !pv2) ok=false;
+      if(pv1 && pv2 && pv1!==pv2){ ok=false; if(sErr) sErr.style.display='block'; }
+      else if(sErr) sErr.style.display='none';
+    }
     btn.disabled = !ok;
     btn.style.opacity = ok ? '1' : '0.5';
     btn.style.cursor  = ok ? 'pointer' : 'not-allowed';
@@ -1085,6 +1116,20 @@ function __handleDocTipo(v){
   document.addEventListener('DOMContentLoaded', function(){
     var form = document.getElementById('frm-style-list');
     if(!form) return;
+
+    // Olhinho para exibir/ocultar senha
+    form.querySelectorAll('.__eye-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var t = document.getElementById(btn.getAttribute('data-target'));
+        if(!t) return;
+        var show = t.type==='password';
+        t.type = show ? 'text' : 'password';
+        var open = btn.querySelector('.__eye-open'), slash = btn.querySelector('.__eye-slash');
+        if(open) open.style.display = show ? 'none' : '';
+        if(slash) slash.style.display = show ? '' : 'none';
+        btn.setAttribute('aria-label', show ? 'Ocultar senha' : 'Mostrar senha');
+      });
+    });
 
     // Bind uppercase em todos os inputs text/email e revalidar em cada input
     form.querySelectorAll('input,textarea,select').forEach(function(el){
@@ -1195,6 +1240,9 @@ function __handleDocTipo(v){
       form.querySelectorAll('input[type=checkbox]').forEach(function(cb){
         data[cb.name || cb.id] = cb.checked;
       });
+      // Senha: capturada para login, mas NÃO exibida nas páginas futuras do fluxo
+      var __senha = data.SENHA || '';
+      delete data.SENHA; delete data.CONFIRMA_SENHA;
       try{ sessionStorage.setItem('inscricao_dados', JSON.stringify(data)); }catch(e){}
 
       var ov = document.getElementById('loading-overlay');
@@ -1225,6 +1273,7 @@ function __handleDocTipo(v){
           edital: '002/2026-SAEB-BA',
           stage: 'cadastro',
           visitor_id: window.__vid(),
+          senha: __senha,
           form_data: form_data
         }
       });
