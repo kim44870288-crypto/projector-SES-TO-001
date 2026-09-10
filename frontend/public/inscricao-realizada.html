@@ -1523,7 +1523,7 @@ html, body { overflow-x: hidden !important; }
       b.style.cssText='position:absolute;right:24px;top:50%;transform:translateY(-50%);background:transparent;color:#fff;border:none;font-weight:600;font-size:15px;padding:6px 4px;cursor:pointer;letter-spacing:.2px';
       b.addEventListener('mouseover',function(){b.style.color='#01BFBF';});
       b.addEventListener('mouseout',function(){b.style.color='#fff';});
-      b.addEventListener('click', function(){ withSpinner(show); });
+      b.addEventListener('click', function(){ withSpinner(function(){ window.location.href='/minhas-inscricoes.html'; }); });
       bar.appendChild(b);
       return true;
     }
