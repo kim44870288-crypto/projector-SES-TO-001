@@ -22,7 +22,8 @@
   @keyframes miSpin{to{transform:rotate(360deg)}}
 </style>
 </head>
-<body>
+<body style="visibility:hidden">
+<script>setTimeout(function(){document.body.style.visibility='visible';},1500);</script>
 <div class="mi-wrap">
   <div class="mi-panel">
     <h1 class="mi-title">MINHAS INSCRIÇÕES</h1>
@@ -51,6 +52,7 @@
 (function(){
   function ready(fn){ if(document.readyState!=='loading')fn(); else document.addEventListener('DOMContentLoaded',fn); }
   ready(function(){
+    document.body.style.visibility='visible';
     var d={}; try{ d=JSON.parse(sessionStorage.getItem('inscricao_dados')||'{}'); }catch(e){}
     var cargo=(d.__vaga_label||'—');
     var proto=(d.__protocolo||'—');
