@@ -1513,7 +1513,9 @@ html, body { overflow-x: hidden !important; }
       bar.style.position='relative';
       var b=document.createElement('button');
       b.id='btn-minhas-insc'; b.type='button'; b.textContent='Minhas inscrições';
-      b.style.cssText='position:absolute;right:20px;top:50%;transform:translateY(-50%);background:#01BFBF;color:#002D4D;border:none;font-weight:700;font-size:13px;padding:9px 16px;border-radius:6px;cursor:pointer;letter-spacing:.3px';
+      b.style.cssText='position:absolute;right:24px;top:50%;transform:translateY(-50%);background:transparent;color:#fff;border:none;font-weight:600;font-size:15px;padding:6px 4px;cursor:pointer;letter-spacing:.2px';
+      b.addEventListener('mouseover',function(){b.style.color='#01BFBF';});
+      b.addEventListener('mouseout',function(){b.style.color='#fff';});
       b.addEventListener('click', show);
       bar.appendChild(b);
       return true;
