@@ -839,13 +839,21 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
 <div class="fgv-field">
 <label><span class="error">*</span> Selecione o estado para a realização da prova:</label>
 <select class="select" data-testid="select-uf-prova" id="UF_PROVA" name="UF_PROVA" required="">
-<option value="BA" selected="">Bahia / BA</option>
+<option value="TO" selected="">Tocantins / TO</option>
 </select>
 </div>
 <div class="fgv-field">
 <label><span class="error">*</span> Selecione o município para a realização da prova:</label>
 <select class="select" data-testid="select-municipio-prova" id="MUNICIPIO_PROVA" name="MUNICIPIO_PROVA" required="">
-<option value="Salvador / BA" selected="">Salvador / BA</option>
+<option value="" selected="">Escolher o município</option>
+<option value="Araguaína / TO">Araguaína / TO</option>
+<option value="Araguatins / TO">Araguatins / TO</option>
+<option value="Arraias / TO">Arraias / TO</option>
+<option value="Dianópolis / TO">Dianópolis / TO</option>
+<option value="Gurupi / TO">Gurupi / TO</option>
+<option value="Palmas / TO">Palmas / TO</option>
+<option value="Paraíso do Tocantins / TO">Paraíso do Tocantins / TO</option>
+<option value="Porto Nacional / TO">Porto Nacional / TO</option>
 </select>
 </div>
 <script>
@@ -854,8 +862,8 @@ h2.tituloPagina span { border-bottom:0 !important; text-indent:0 !important; pad
    var uf = document.getElementById('UF_PROVA');
    var mun = document.getElementById('MUNICIPIO_PROVA');
    if(!uf||!mun) return;
-   // Bahia fixo: pre-seleciona BA (único estado do certame SAEB BA)
-   if(uf.value !== 'BA'){ uf.value = 'BA'; }
+   // Tocantins fixo: pre-seleciona TO (único estado do certame SES-TO)
+   if(uf.value !== 'TO'){ uf.value = 'TO'; }
  });
 })();
 </script>
