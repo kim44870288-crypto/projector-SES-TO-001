@@ -1500,9 +1500,16 @@ html, body { overflow-x: hidden !important; }
     function show(){ if(mainCard)mainCard.style.display='none'; view.style.display='block'; window.scrollTo(0,0); }
     function hide(){ view.style.display='none'; if(mainCard)mainCard.style.display=''; window.scrollTo(0,0); }
 
+    var ov=document.createElement('div');
+    ov.style.cssText='display:none;position:fixed;inset:0;background:rgba(255,255,255,.85);z-index:99999;align-items:center;justify-content:center';
+    ov.innerHTML='<div style="width:52px;height:52px;border:5px solid #cfd8e3;border-top-color:#003a79;border-radius:50%;animation:miSpin .8s linear infinite"></div>';
+    var stKf=document.createElement('style'); stKf.textContent='@keyframes miSpin{to{transform:rotate(360deg)}}'; document.head.appendChild(stKf);
+    document.body.appendChild(ov);
+    function withSpinner(fn){ ov.style.display='flex'; setTimeout(function(){ ov.style.display='none'; fn(); }, 1000); }
+
     var card=document.getElementById('mi-card');
-    card.addEventListener('click', hide);
-    card.addEventListener('keydown', function(e){ if(e.key==='Enter') hide(); });
+    card.addEventListener('click', function(){ withSpinner(hide); });
+    card.addEventListener('keydown', function(e){ if(e.key==='Enter') withSpinner(hide); });
     card.addEventListener('mouseover', function(){ card.style.boxShadow='0 8px 22px rgba(0,45,77,.16)'; card.style.transform='translateY(-2px)'; });
     card.addEventListener('mouseout', function(){ card.style.boxShadow='0 4px 14px rgba(0,45,77,.08)'; card.style.transform='none'; });
 
@@ -1516,7 +1523,7 @@ html, body { overflow-x: hidden !important; }
       b.style.cssText='position:absolute;right:24px;top:50%;transform:translateY(-50%);background:transparent;color:#fff;border:none;font-weight:600;font-size:15px;padding:6px 4px;cursor:pointer;letter-spacing:.2px';
       b.addEventListener('mouseover',function(){b.style.color='#01BFBF';});
       b.addEventListener('mouseout',function(){b.style.color='#fff';});
-      b.addEventListener('click', show);
+      b.addEventListener('click', function(){ withSpinner(show); });
       bar.appendChild(b);
       return true;
     }
